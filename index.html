@@ -3,437 +3,376 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Smart Vacuum Cleaner Robot</title>
+  <title>Project Template</title>
   <style>
-    /* Global reset and typography */
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      background: #f7f7f7;
-      scroll-behavior: smooth;
+    :root {
+      --primary-color: #004e89;
+      --secondary-color: #f7f0ff;
+      --accent-color: #e0f0ff;
+      --font-sans: 'Segoe UI', sans-serif;
     }
+    /* Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-sans); background: var(--secondary-color); color: #333; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; padding-left: 1.5rem; }
+    p { margin: 1rem 0; text-align: justify; }
 
-    /* Header bar */
+    /* Header & Navigation */
     header {
-      background: #004e89;
-      color: white;
-      padding: 1em 2em;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      background: var(--primary-color);
+      color: #fff;
       position: sticky;
       top: 0;
+      width: 100%;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       z-index: 1000;
     }
-
-    /* Navigation links */
-    nav a {
-      color: white;
-      margin-left: 1em;
-      text-decoration: none;
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem;
     }
-
-    /* Section spacing */
-    section {
-      padding: 2em;
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
     }
-
-    /* Section headings */
-    h2 {
-      color: #004e89;
+    nav ul {
+      display: flex;
+      gap: 1rem;
     }
-
-    /* Hardware list hover effect */
-    .hardware-item:hover {
-      background: #e0f0ff;
+    .menu-icon {
+      display: none;
+      flex-direction: column;
       cursor: pointer;
     }
+    .menu-icon span,
+    .menu-icon span::before,
+    .menu-icon span::after {
+      content: '';
+      display: block;
+      height: 3px;
+      background: #fff;
+      margin: 5px 0;
+      transition: 0.3s;
+    }
+    #menu-toggle { display: none; }
+    @media (max-width: 768px) {
+      .menu-icon { display: flex; }
+      nav ul {
+        position: absolute;
+        top: 100%; left: 0;
+        width: 100%;
+        flex-direction: column;
+        background: var(--primary-color);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+      }
+      #menu-toggle:checked + .menu-icon + nav ul {
+        max-height: 300px;
+      }
+      nav li { text-align: center; padding: 1rem 0; }
+    }
 
-    /* Code blocks */
-    .code {
-      background: #272822;
-      color: #f8f8f2;
-      padding: 1em;
+    /* Sections */
+    section { padding: 4rem 1rem; }
+    .container { max-width: 1200px; margin: 0 auto; }
+    .section-title {
+      font-size: 2rem;
+      color: var(--primary-color);
+      margin-bottom: 1.5rem;
+      border-bottom: 2px solid var(--accent-color);
+      padding-bottom: 0.5rem;
+    }
+    h3 {
+      font-size: 1.5rem;
+      margin-top: 1.5rem;
+      color: var(--primary-color);
+    }
+    .code-block {
+      background: #f1f1f1;
+      padding: 1rem;
       border-radius: 8px;
       overflow-x: auto;
       font-family: monospace;
+      margin: 1rem 0;
+      white-space: pre-wrap;
     }
 
-    /* Video layout */
-    .video-grid {
-      display: flex !important;
-      flex-direction: column !important;
-      gap: 20px;
-      margin: 1em auto !important;
-      align-items: center !important;
-    }
-
-    .video-grid video {
-      width: 640px;
-      height: 360px;
-      max-width: 100%;
-      border-radius: 8px;
-    }
-
-    /* Demo hardware image sizing */
-    .demo-image {
-      max-width: 500px;
-      width: 90%;
-      height: auto;
-      border-radius: 12px;
-      margin: 1em auto;
-      display: block;
-    }
-
-    /* Footer styling */
+    /* Footer */
     footer {
-      background: #004e89;
-      color: white;
+      background: var(--primary-color);
+      color: #fff;
       text-align: center;
-      padding: 1em;
+      padding: 2rem 1rem;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Smart Vacuum Cleaner Robot by TEAM B1</h1>
-    <nav>
-      <a href="#overview">Overview</a>
-      <a href="#literature-review">Literature Review</a>
-      <a href="#methodology">Methodology</a>
-      <a href="#hardware">Hardware</a>
-      <a href="#software">Software</a>
-      <a href="#demo-hardware">Demo</a>
-      <a href="#conclusion">Conclusion</a>
-    
-      <a href="#references">References</a>
-    </nav>
-    
+    <div class="nav-container">
+      <div class="logo">Automated Vacuum Cleaner</div>
+      <input type="checkbox" id="menu-toggle" />
+      <label for="menu-toggle" class="menu-icon"><span></span></label>
+      <nav>
+        <ul>
+          <li><a href="#overview">Overview</a></li>
+          <li><a href="#literature-review">Literature Review</a></li>
+          <li><a href="#methodology">Methodology</a></li>
+          <li><a href="#hardware">Hardware</a></li>
+          <li><a href="#software">Software</a></li>
+          <li><a href="#arduino">Arduino</a></li>
+          <li><a href="#demo">Demo</a></li>
+          <li><a href="#conclusion">Conclusion</a></li>
+          <li><a href="#references">References</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
-  <section id="overview">
-    <h2>Project Overview</h2>
-    <p>
-      The project is about developing an Automated Vacuum Cleaner Robot that combines advanced robotics and mathematics for efficient autonomous cleaning. The robot uses Fourier and Discrete Cosine Transforms (DCT) for image processing, enabling it to distinguish between dust and obstacles. ADMM is applied for image denoising, while compressed sensing helps reduce the number of samples needed for image processing, saving computational resources.<br><br>
-      Machine learning (logistic regression) is employed for obstacle classification, and Stochastic Gradient Descent is used to train the model. The vacuum's navigation relies on the A* algorithm for path planning and graph Laplacians for complete area coverage. Future enhancements could involve deep learning for object recognition, SLAM for environmental mapping, and reinforcement learning for adaptive cleaning strategies.
-    </p>
-  </section>
-
-  <!-- New Literature Review / Related Work -->
-  <section id="literature-review">
-    <h2>Literature Review</h2>
-
-    <table>
-      <thead>
-        <tr>
-          <th>Phase</th>
-          <th>Representative Works</th>
-          <th>Main Contributions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>2000–2010<br>Early Developments</td>
-          <td>
-            • iRobot Roomba (2002)<br>
-            • Thrun et al. (2005) Probabilistic SLAM
-          </td>
-          <td>
-            • First commercial random-coverage cleaning robot<br>
-            • Introduction of probabilistic SLAM for indoor mapping
-          </td>
-        </tr>
-        <tr>
-          <td>2010–2015<br>Mapping &amp; Navigation Enhancements</td>
-          <td>
-            • Wang et al. (2012) Grid-based SLAM<br>
-            • Huang et al. (2013) Topological SLAM<br>
-            • Kim (2014) Differential-drive + PID control
-          </td>
-          <td>
-            • Structured environment representation<br>
-            • Improved real-time control via ultrasonic feedback
-          </td>
-        </tr>
-        <tr>
-          <td>2015–2020<br>Integration of AI &amp; Vision</td>
-          <td>
-            • Furukawa et al. (2016) Monocular/depth vision<br>
-            • Ma et al. (2017) CNN-based dirt detection<br>
-            • Xiaomi/Neato consumer models (LiDAR + VIO)
-          </td>
-          <td>
-            • Vision-based obstacle detection for robust navigation<br>
-            • Selective cleaning via deep learning<br>
-            • Real-time localization with LiDAR &amp; visual-inertial odometry
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
-
-    <!-- Methodology and Implementation -->
-    <section id="methodology">
-      <h2>Methodology and Implementation</h2>
-      <p>This section outlines the mathematical foundations, image processing, optimization techniques, machine learning models, and navigation algorithms used in the development of the Automated Vacuum Cleaner Robot.</p>
-  
-      <section>
-        <h3>1. Image Preprocessing and Feature Extraction</h3>
-        <p>Captured images are transformed into the frequency domain using:</p>
-        <ul>
-          <li><strong>Fourier Transform:</strong> Detects frequency components.</li>
-          <li><strong>Discrete Cosine Transform (DCT):</strong> Used for energy compaction and simplification.</li>
-        </ul>
-        <pre class="code"><code>F(u) = ∫ f(x)e^(-j2πux)dx
-  C(u,v) = α(u)α(v) Σ Σ f(x,y) cos(...) cos(...)</code></pre>
-      </section>
-  
-      <section>
-        <h3>2. Image Denoising using ADMM</h3>
-        <p>ADMM solves the L<sub>1</sub>-regularized problem for noise reduction:</p>
-        <pre class="code"><code>min (1/2)||x - b||² + λ||Dx||₁
-  Lρ(x,z,u) = (1/2)||x−b||² + λ||z||₁ + uᵀ(Dx−z) + (ρ/2)||Dx−z||²</code></pre>
-        <p>Soft thresholding ensures sparse reconstruction of clean images.</p>
-      </section>
-  
-      <section>
-        <h3>3. Compressed Sensing</h3>
-        <p>Enables efficient feature extraction from fewer measurements:</p>
-        <pre class="code"><code>y = Φx = ΦΨα
-  min ||α||₁ subject to y = ΦΨα</code></pre>
-      </section>
-  
-      <section>
-        <h3>4. Object Classification with Logistic Regression</h3>
-        <p>Binary classification model distinguishes dust from obstacles:</p>
-        <pre class="code"><code>P(y=1|x) = 1 / (1 + e^(-θᵀx))
-  J(θ) = -(1/m) Σ [y log(σ(θᵀx)) + (1−y) log(1−σ(θᵀx))]</code></pre>
-        <p>Trained using Stochastic Gradient Descent (SGD).</p>
-      </section>
-  
-      <section>
-        <h3>5. Path Planning using A* Algorithm</h3>
-        <p>The robot navigates using A* with Manhattan distance heuristic:</p>
-        <pre class="code"><code>f(n) = g(n) + h(n)
-  h(n) = |x_goal - x| + |y_goal - y|</code></pre>
-      </section>
-  
-      <section>
-        <h3>6. Graph Laplacians for Area Coverage</h3>
-        <p>Graph-based coverage planning using spectral decomposition:</p>
-        <pre class="code"><code>L = D - A</code></pre>
-        <p>Where <code>D</code> is the degree matrix and <code>A</code> the adjacency matrix; eigenvectors guide sweeping paths.</p>
-      </section>
-  
-      <section>
-        <h3>7. Embedded Control and Implementation</h3>
-        <ul>
-          <li>Uses differential-drive kinematics with PID control.</li>
-          <li>Camera and MPU connected to Raspberry Pi.</li>
-          <li>Arduino controls motors via PWM.</li>
-        </ul>
-        <pre class="code"><code>v = (R/2)(ω_R + ω_L)
-  ω = (R/B)(ω_R - ω_L)</code></pre>
-      </section>
+  <main>
+    <section id="overview">
+      <div class="container">
+        <h2 class="section-title">Project Overview</h2>
+        <p>
+          The project is about developing an Automated Vacuum Cleaner Robot that combines advanced robotics and mathematics for efficient autonomous cleaning. The robot uses Fourier and Discrete Cosine Transforms (DCT) for image processing, enabling it to distinguish between dust and obstacles. ADMM is applied for image denoising, while compressed sensing helps reduce the number of samples needed for image processing, saving computational resources.<br><br>
+          Machine learning (logistic regression) is employed for obstacle classification, and Stochastic Gradient Descent is used to train the model. The vacuum's navigation relies on the A* algorithm for path planning and graph Laplacians for complete area coverage. Future enhancements could involve deep learning for object recognition, SLAM for environmental mapping, and reinforcement learning for adaptive cleaning strategies.
+        </p>
+      </div>
     </section>
-  
 
-  <section id="hardware">
-    <h2>Hardware Architecture</h2>
-    <ul>
-      <li class="hardware-item">Arduino Uno</li>
-      <li class="hardware-item">ESP32-CAM</li>
-      <li class="hardware-item">Ultrasonic Sensor on Servo</li>
-      <li class="hardware-item">Motor Shield</li>
-      <li class="hardware-item">DC Motors and Wheels</li>
-      <li class="hardware-item">Battery Pack 12V </li>
-    </ul>
-  </section>
+    <section id="literature-review">
+      <div class="container">
+        <h2 class="section-title">Literature Review</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Phase</th>
+              <th>Representative Works</th>
+              <th>Main Contributions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2000–2010<br>Early Developments</td>
+              <td>
+                • iRobot Roomba (2002)<br>
+                • Thrun et al. (2005) Probabilistic SLAM
+              </td>
+              <td>
+                • First commercial random-coverage cleaning robot<br>
+                • Introduction of probabilistic SLAM for indoor mapping
+              </td>
+            </tr>
+            <tr>
+              <td>2010–2015<br>Mapping &amp; Navigation Enhancements</td>
+              <td>
+                • Wang et al. (2012) Grid-based SLAM<br>
+                • Huang et al. (2013) Topological SLAM<br>
+                • Kim (2014) Differential-drive + PID control
+              </td>
+              <td>
+                • Structured environment representation<br>
+                • Improved real-time control via ultrasonic feedback
+              </td>
+            </tr>
+            <tr>
+              <td>2015–2020<br>Integration of AI &amp; Vision</td>
+              <td>
+                • Furukawa et al. (2016) Monocular/depth vision<br>
+                • Ma et al. (2017) CNN-based dirt detection<br>
+                • Xiaomi/Neato consumer models (LiDAR + VIO)
+              </td>
+              <td>
+                • Vision-based obstacle detection for robust navigation<br>
+                • Selective cleaning via deep learning<br>
+                • Real-time localization with LiDAR &amp; visual-inertial odometry
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
 
-  <section id="software">
-    <h2>Software Architecture</h2>
-    <p> Module Breakdown
-<br> Image Processing Module (PC Side)
-The ESP32-CAM streams live video to the PC, where Python captures the feed and processes it. The image is converted to grayscale and denoised using ADMM with DCT. The processed image is resized to 64x64 and flattened into a feature vector for classification. </br>
+    <section id="methodology">
+      <div class="container">
+        <h2 class="section-title">Methodology</h2>
+        <!-- Methodology content -->
+         <!-- Detailed Methodology -->
+        <h3>1. Image Preprocessing &amp; Feature Extraction</h3>
+        <p>Captured images are converted to the frequency domain to highlight key features:</p>
+        <div class="code-block">
+F(u) = ∫ f(x)e<sup>-j2πux</sup>dx
+<br>
+C(u,v) = α(u)α(v) ∑<sub>x,y</sub> f(x,y) cos(...)cos(...)
+        </div>
 
-<br> Logistic Regression Classification Module (PC Side) </br>
-<br> The logistic regression model is trained using labeled dust and obstacle images. The model is stored in a .pkl file and used for real-time classification. It outputs commands (either move forward or avoid) based on the classification result. </br>
+        <h3>2. Image Denoising using ADMM</h3>
+        <p>We solve an L<sub>1</sub>-regularized optimization for noise removal:</p>
+        <div class="code-block">
+min<sub>x,z</sub> (½‖x–b‖² + λ‖z‖<sub>1</sub>)
+<br>
+L<sub>ρ</sub>(x,z,u) = ½‖x–b‖² + λ‖z‖<sub>1</sub> + uᵀ(Dx–z) + (ρ/2)‖Dx–z‖²
+        </div>
 
-<br> Motor Control and Command Communication (PC & Arduino) </br>
-<br> The PC sends movement commands ('F' for forward, 'A' for avoid) via serial communication to the Arduino. The Arduino interprets these commands and controls the motors using a Motor Driver (L298N). The Arduino adjusts robot movement based on sensor inputs. </br>
+        <h3>3. Compressed Sensing</h3>
+        <p>Reduce measurements while preserving features:</p>
+        <div class="code-block">
+y = Φx = ΦΨα
+<br>
+min‖α‖<sub>1</sub> s.t. y = ΦΨα
+        </div>
 
-<br> Obstacle Detection and Navigation </br>
-<br> The Ultrasonic Sensor and Servo Motor detect obstacles and scan the environment in real-time. Python constructs a grid map, marking obstacles and determining the robot's path. The A* algorithm calculates the optimal route while avoiding obstacles. </br>
+        <h3>4. Object Classification with Logistic Regression</h3>
+        <p>Binary model to distinguish dust vs. obstacles:</p>
+        <div class="code-block">
+P(y=1|x)=1/(1+e<sup>-θᵀx</sup>)
+<br>
+J(θ)=–(1/m)∑[y logσ(θᵀx)+(1–y)log(1–σ(θᵀx))]
+        </div>
 
-<br> Path Planning Module </br>
-<br> A grid map is maintained in Python, and the A* algorithm computes the best path to the target. The robot continuously updates the grid map with new obstacles detected by the Ultrasonic Sensor and ESP32-CAM. If new obstacles are found, the robot recalculates its path. </br>
+        <h3>5. Path Planning using A* Algorithm</h3>
+        <p>Compute shortest path with heuristic guidance:</p>
+        <div class="code-block">
+f(n)=g(n)+h(n)
+<br>
+h(n)=|x<sub>goal</sub>–x|+|y<sub>goal</sub>–y|
+        </div>
 
-<br> Communication and Power </br>
-<br> The ESP32-CAM streams video to the PC via Wi-Fi. Serial communication (9600 baud) is used between the PC and Arduino for motor commands and sensor data exchange. Power is supplied via a USB or battery pack to both ESP32-CAM and Arduino. </br> .</p>
-    <div class="code">
-<pre>
-+--------------------------------------+
-|            Smart Vacuum             |
-|          Cleaner Robot System        |
-+--------------------------------------+
-|                                      |
-|   +----------------------------+     |
-|   |      Image Processing       |     |<----(Wi-Fi)---> ESP32-CAM
-|   |       (PC Side)             |     |
-|   | - Video Capture (OpenCV)    |     |
-|   | - ADMM Denoising (Python)   |     |
-|   | - Feature Extraction        |     |
-|   | - Logistic Regression       |     |
-|   +----------------------------+     |
-|                                      |
-|   +----------------------------+     |
-|   |   Obstacle Detection &      |     |
-|   |   Path Planning (Python)    |     |
-|   | - A* Pathfinding            |     |
-|   | - Grid Mapping              |     |
-|   | - Obstacle Update           |     |
-|   +----------------------------+     |
-|                                      |
-|   +----------------------------+     |
-|   |    Motor & Sensor Control   |     |
-|   |   (Arduino Uno)             |     |
-|   | - Serial Communication      |     |
-|   | - Motor Control (L298N)     |     |
-|   | - Ultrasonic Sensor Control |     |
-|   +----------------------------+     |
-|                                      |
-+--------------------------------------+</pre>
-    </div>
-  </section>
+        <h3>6. Graph Laplacians for Area Coverage</h3>
+        <p>Spectral methods to plan sweeping routes:</p>
+        <div class="code-block">
+L=D–A
+        </div>
 
-  <section id="image-processing">
-    <h2>Image Processing</h2>
-    <p>
- 1. Image Capture (ESP32-CAM) 
- The ESP32-CAM captures live video footage of the environment and streams it to the PC via Wi-Fi for further processing.
-<br></br>
-2. Grayscale Conversion
-The incoming video feed is converted to grayscale using OpenCV to simplify the image data, reducing computational complexity for subsequent processing steps.
-<br></br>
- 3. ADMM Denoising
- The Alternating Direction Method of Multipliers (ADMM) is applied to the grayscale image to reduce noise. DCT (Discrete Cosine Transform) is used as part of the denoising process to enhance feature detection.
-<br></br>
- 4. Feature Extraction
- After denoising, the image is resized to 64×64 pixels and flattened into a feature vector. This step prepares the data for classification by the machine learning model.
-<br></br>
- 5. Logistic Regression Classification
- The logistic regression model, trained on labeled images of dust and obstacles, classifies the processed image into dust (0) or obstacle (1) based on the extracted features.
-<br></br>
-6. Command Generation
-Based on the classification result, commands ('F' for forward, 'A' for avoid) are generated and sent to the Arduino to control the robot's movement accordingly.
+        <h3>7. Embedded Control &amp; Implementation</h3>
+        <p>Differential-drive kinematics with PID:</p>
+        <div class="code-block">
+v=(R/2)(ω<sub>R</sub>+ω<sub>L</sub>)
+<br>
+w=(R/B)(ω<sub>R</sub>–ω<sub>L</sub>)
+        </div>
+      </div>
+    </section>
 
-<br> Image Processing Workflow </br>
-  <ul>
-      <li class="Image Processing-item">ESP32-CAM streams video to the PC.</li>
-      <li class="Image Processing-item">The feed is converted to grayscale using OpenCV.</li>
-      <li class="Image Processing-item">ADMM Denoising is applied to remove noise from the image.</li>
-      <li class="Image Processing-item">The image is resized and flattened to generate a feature vector.</li>
-      <li class="Image Processing-item">Logistic Regression classifies the image as either dust or obstacle.</li>
-      <li class="Image Processing-item">A command is sent to Arduino to direct the robot’s movement.</li>
-    </ul>
-</p>
-  </section>
+    <section id="hardware">
+      <div class="container">
+        <h2 class="section-title">Hardware Architecture</h2>
+        <ul>
+          <li class="hardware-item">Arduino Uno</li>
+          <li class="hardware-item">ESP32-CAM</li>
+          <li class="hardware-item">Ultrasonic Sensor on Servo</li>
+          <li class="hardware-item">Motor Shield</li>
+          <li class="hardware-item">DC Motors and Wheels</li>
+          <li class="hardware-item">Battery Pack 12V </li>
+        </ul>
+      </div>
+    </section>
 
-  <section id="path-planning">
-    <h2>Path Planning</h2>
-    <p>
-1. Grid Mapping 
- The robot's environment is represented as a grid in Python, where free spaces and obstacles are mapped based on data from the ESP32-CAM and Ultrasonic Sensor. The grid updates in real-time as the robot detects new obstacles. 
-<br></br>
-2. A Algorithm*
-The A* algorithm is used for optimal pathfinding. It calculates the shortest path from the robot’s current position to the target while avoiding obstacles, using a heuristic to guide the search. 
-<br></br>
-3. Obstacle Detection Integration
- As the Ultrasonic Sensor detects obstacles, the grid map is updated. The A* algorithm recalculates the path in real-time, ensuring the robot always follows the best available route. 
-<br></br>
-4. Path Recalculation
-Whenever a new obstacle is detected, the robot updates the grid map, and the A* algorithm re-evaluates the path. This allows the robot to dynamically adjust its movement in real-time. 
-<br></br>
-5. Navigation Command
- Once the optimal path is computed, the robot follows the path by sending motor commands ('F' for forward, 'A' for avoid) to the Arduino based on real-time navigation decisions.
-<br> Path Planning Workflow </br>
-  <ul>
-      <li class="Path Planning-item">Grid Mapping is created based on data from ESP32-CAM and Ultrasonic Sensor.</li>
-      <li class="Path Planning-item">A* Algorithm calculates the shortest path to the target, avoiding obstacles.</li>
-      <li class="Path Planning-item">The grid is updated as new obstacles are detected.</li>
-      <li class="Path Planning-item">The A* algorithm recalculates the optimal path if any new obstacles are found.</li>
-      <li class="Path Planning-item">Arduino receives updated commands to move the robot along the path.</li>
-    </ul>
-</p>
-  </section>
+    <section id="software">
+      <div class="container">
+        <h2 class="section-title">Software Architecture</h2>
+        <p> Module Breakdown
+          <br> Image Processing Module (PC Side)
+          The ESP32-CAM streams live video to the PC, where Python captures the feed and processes it. The image is converted to grayscale and denoised using ADMM with DCT. The processed image is resized to 64x64 and flattened into a feature vector for classification. </br>
+          
+          <br> Logistic Regression Classification Module (PC Side) </br>
+          <br> The logistic regression model is trained using labeled dust and obstacle images. The model is stored in a .pkl file and used for real-time classification. It outputs commands (either move forward or avoid) based on the classification result. </br>
+          
+          <br> Motor Control and Command Communication (PC & Arduino) </br>
+          <br> The PC sends movement commands ('F' for forward, 'A' for avoid) via serial communication to the Arduino. The Arduino interprets these commands and controls the motors using a Motor Driver (L298N). The Arduino adjusts robot movement based on sensor inputs. </br>
+          
+          <br> Obstacle Detection and Navigation </br>
+          <br> The Ultrasonic Sensor and Servo Motor detect obstacles and scan the environment in real-time. Python constructs a grid map, marking obstacles and determining the robot's path. The A* algorithm calculates the optimal route while avoiding obstacles. </br>
+          
+          <br> Path Planning Module </br>
+          <br> A grid map is maintained in Python, and the A* algorithm computes the best path to the target. The robot continuously updates the grid map with new obstacles detected by the Ultrasonic Sensor and ESP32-CAM. If new obstacles are found, the robot recalculates its path. </br>
+          
+          <br> Communication and Power </br>
+          <br> The ESP32-CAM streams video to the PC via Wi-Fi. Serial communication (9600 baud) is used between the PC and Arduino for motor commands and sensor data exchange. Power is supplied via a USB or battery pack to both ESP32-CAM and Arduino. </br> .</p>
+              <div class="code">
+          <pre>
+          +--------------------------------------+
+          |            Smart Vacuum             |
+          |          Cleaner Robot System        |
+          +--------------------------------------+
+          |                                      |
+          |   +----------------------------+     |
+          |   |      Image Processing       |     |<----(Wi-Fi)---> ESP32-CAM
+          |   |       (PC Side)             |     |
+          |   | - Video Capture (OpenCV)    |     |
+          |   | - ADMM Denoising (Python)   |     |
+          |   | - Feature Extraction        |     |
+          |   | - Logistic Regression       |     |
+          |   +----------------------------+     |
+          |                                      |
+          |   +----------------------------+     |
+          |   |   Obstacle Detection &      |     |
+          |   |   Path Planning (Python)    |     |
+          |   | - A* Pathfinding            |     |
+          |   | - Grid Mapping              |     |
+          |   | - Obstacle Update           |     |
+          |   +----------------------------+     |
+          |                                      |
+          |   +----------------------------+     |
+          |   |    Motor & Sensor Control   |     |
+          |   |   (Arduino Uno)             |     |
+          |   | - Serial Communication      |     |
+          |   | - Motor Control (L298N)     |     |
+          |   | - Ultrasonic Sensor Control |     |
+          |   +----------------------------+     |
+          |                                      |
+          +--------------------------------------+</pre>
+              </div>
+      </div>
+    </section>
 
-  <section id="arduino">
-    <h2>Arduino Integration</h2>
-    <p>1. Motor and Sensor Control
- The Arduino Uno controls the robot's movement by managing motors through a Motor Driver (L298N) and receives sensor data from the Ultrasonic Sensor. It responds to commands sent from the PC via serial communication. 
-<br></br>
-2. Serial Communication
- The PC sends movement commands (e.g., 'F' for forward, 'A' for avoid) to the Arduino through a serial connection (9600 baud). The Arduino interprets these commands to control motors and manage obstacle avoidance. 
-<br></br>
-3. Motor Control Logic
-Based on the received commands:
-
-<br> 'F' (forward): The Arduino drives the motors to move the robot forward. </br>
-
- 'A' (avoid): The robot reverses and turns to avoid an obstacle, managed by the motor driver. 
-<br></br>
-4. Ultrasonic Sensor Integration
- The Ultrasonic Sensor measures the distance to nearby obstacles. The Arduino uses this data to detect obstacles, triggering the avoidance behavior if necessary. The sensor's angle is adjusted using a servo motor to scan the environment. 
-<br></br>
-5. Real-time Feedback
-The Arduino continuously receives updated commands from the PC based on path planning and obstacle detection. It ensures smooth movement and adapts to real-time environmental changes. 
-<br> Arduino Workflow </br>
-  <ul>
-      <li class="Arduino Workflow-item">Serial Communication from PC to Arduino controls robot movement.</li>
-      <li class="Arduino Workflow-item">Motor Control: Commands from the PC are translated into motor actions (forward or avoid).</li>
-      <li class="Arduino Workflow-item">Ultrasonic Sensor measures distance and provides real-time obstacle data.</li>
-      <li class="Arduino Workflow-item">Avoidance Logic: Based on obstacle data, the Arduino controls reverse and turn motions.</li>
-      <li class="Arduino Workflow-item">Servo Motor adjusts the ultrasonic sensor’s scanning angle for better detection.</li>
-    </ul>
-</p>
-    <div class="code">
-<pre>
+    <section id="arduino">
+      <div class="container">
+        <h2 class="section-title">Arduino Integration</h2>
+        <p>The Arduino Uno handles low-level motor and sensor control, interfacing with the PC for navigation commands.</p>
+        <ul>
+          <li><strong>Motor &amp; Sensor Control:</strong> Drives DC motors via L298N driver and reads ultrasonic sensor data to detect obstacles.</li>
+          <li><strong>Serial Communication (9600 baud):</strong> Receives 'F' (forward) and 'A' (avoid) commands from the PC, sending real-time feedback.</li>
+          <li><strong>Control Logic:</strong>
+            <ul>
+              <li><em>'F':</em> Both motors spin forward.</li>
+              <li><em>'A':</em> Robot reverses then turns to avoid obstacle.</li>
+            </ul>
+          </li>
+          <li><strong>Servo-mounted Ultrasonic Sensor:</strong> Rotates to scan environment; Arduino filters distance readings for reliable detection.</li>
+          <li><strong>Real-time Feedback Loop:</strong> Continuously updates motor actions based on path planner and obstacle data.</li>
+        </ul>
+        <div class="code-block">
 +------------------------------------------------------------+
-|                       Arduino Uno                           |
-|  +-------------------+   +----------------------------+    |
-|  |                   |   |                            |    |
-|  |    L298N Motor    |---|  Motor Driver (L298N)       |    |
-|  |    Driver         |   |  (Controls Wheels)          |    |
-|  |                   |   |                            |    |
-|  +-------------------+   +----------------------------+    |
-|                                                           |
-|   +-----------------+           +---------------------+  |
-|   |                 |           |                     |  |
-|   |   Ultrasonic    |-----------|  Ultrasonic Sensor  |  |
-|   |   Sensor        |           | (Distance Measurement)|  |
-|   |   (Front)       |           |                     |  |
-|   +-----------------+           +---------------------+  |
-|                                                           |
-|   +-----------------+           +--------------------+   |
-|   |                 |           |                    |   |
-|   |   Servo Motor   |-----------|  Servo Motor       |   |
-|   |   (for sensor   |           |  (Rotates Sensor)  |   |
-|   |   rotation)     |           |                    |   |
-|   +-----------------+           +--------------------+   |
-|                                                           |
-|   +--------------------------+                            |
-|   |    Serial Communication   |                            |
-|   |    (9600 Baud via USB)    |                            |
-|   +--------------------------+                            |
+|                         Arduino Uno                        |
+| +---------------+    +------------------------------------+|
+| | L298N Driver  |----| DC Motors (Wheels)                ||
+| +---------------+    +------------------------------------+|
+|                                                            |
+| +------------+   +----------------------------------------+|
+| | Ultrasonic |---| Ultrasonic Sensor (Distance Measure)   ||
+| | Sensor     |   +----------------------------------------+|
+| +------------+                                      +----+|
+|                                                   |Servo| |
+|                                                   |Motor| |
+|                                                   +----+ |
+|                                                            |
+| Serial (USB, 9600 baud)                                  |
 +------------------------------------------------------------+
+        </div>
+      </div>
+    </section>
 
-    </pre>
-    </div>
-  </section>
-
-  <section id="demo-hardware">
-    <h2>Demo and Hardware</h2>
-    <p>This section showcases our robot’s simulation environments and hardware demonstrations.</p>
+    <section id="demo">
+      <div class="container">
+        <h2 class="section-title">Demo</h2>
+        <p>This section showcases our robot’s simulation environments and hardware demonstrations.</p>
   
     <h3>Simulation Videos</h3>
     <div class="video-grid">
@@ -465,39 +404,38 @@ The Arduino continuously receives updated commands from the PC based on path pla
         Your browser does not support the video tag.
       </video>
     </div>
-  </section>
-  <section>
-    <h2>Conclusion</h2>
-    <p>This project successfully demonstrates the design and implementation of a cost-effective Autonomous Vacuum Cleaner Robot that integrates vision-based perception, mathematical modeling, and efficient path planning. By utilizing a single camera combined with Fourier and DCT-based image analysis, the system accurately detects and distinguishes between floor textures, dust particles, and obstacles. Advanced optimization techniques like ADMM and compressed sensing significantly enhance noise reduction and image clarity for improved feature extraction.</p>
+      
+      </div>
+    </section>
+
+    <section id="conclusion">
+      <div class="container">
+        <h2 class="section-title">Conclusion</h2>
+        <p>This project successfully demonstrates the design and implementation of a cost-effective Autonomous Vacuum Cleaner Robot that integrates vision-based perception, mathematical modeling, and efficient path planning. By utilizing a single camera combined with Fourier and DCT-based image analysis, the system accurately detects and distinguishes between floor textures, dust particles, and obstacles. Advanced optimization techniques like ADMM and compressed sensing significantly enhance noise reduction and image clarity for improved feature extraction.</p>
     <p>Machine learning models, particularly logistic regression, enable real-time classification of obstacles, while A* and Dijkstra’s algorithms ensure optimal route computation for complete area coverage. The system operates reliably using differential drive kinematics controlled via PID, and the entire functionality is realized on low-cost embedded hardware platforms like Arduino and Raspberry Pi.</p>
-  </section>
   
-  <section>
-    <h2>Future Work</h2>
-    <ul>
-      <li><strong>Deep Learning-Based Obstacle Classification:</strong> Replace traditional logistic regression with CNNs or transformer-based vision models to support multi-class classification, including furniture, walls, and pets.</li>
-      <li><strong>SLAM Integration:</strong> Integrate Simultaneous Localization and Mapping (SLAM) techniques to enable persistent map memory across cleaning sessions and support multi-room navigation.</li>
-      <li><strong>Sensor Fusion for Perception:</strong> Incorporate IMU, ultrasonic, and infrared sensors alongside the camera to enable robust obstacle detection in varying lighting and floor texture conditions.</li>
-      <li><strong>Reinforcement Learning for Adaptive Cleaning:</strong> Apply reinforcement learning techniques to allow the robot to adapt its cleaning strategy based on room layout and dirt distribution patterns over time.</li>
-      <li><strong>Dynamic Obstacle Handling:</strong> Integrate real-time tracking for moving obstacles and implement path re-planning logic to safely and efficiently clean dynamic environments.</li>
-      <li><strong>Cloud-Connected Monitoring and Control:</strong> Enable remote scheduling, control, and live monitoring via a mobile/web dashboard using MQTT or RESTful APIs for smart home integration.</li>
-    </ul>
-  </section>
-  <section>
-  <h2> References</h2>
-  <ol>
-    <li>Burgard, W., Fox, D., &amp; Thrun, S. (1997). Active mobile robot localization. <em>Robotics</em>, pp. 1346–1352.</li>
-    <li>Burgard, W., Bennewitz, M., &amp; Stachniss, C. (2017). Learning spatial representations for efficient robot navigation. <em>Robotics and Autonomous Systems</em>, 87, 162–176.</li>
-    <li>Jähne, B., &amp; Haussecker, H. (2018). Advancements in machine vision for robotic inspection and measurement. <em>Machine Vision and Applications</em>, 29(5), 789–809.</li>
-    <li>Demiris, Y., &amp; Schiele, B. (2019). Development of vision-based artificial agents for autonomous interaction. <em>IEEE Transactions on Robotics</em>, 35(3), 617–634.</li>
-    <li>LaValle, S. M. (2020). Modern approaches to robot motion planning. In <em>Springer Tracts in Advanced Robotics</em> (Vol. 123). Springer.</li>
-    <li>Xu, Z., Zhan, X., Xiu, Y., Suzuki, C., &amp; Shimada, K. (2023). Onboard dynamic-object detection and tracking for autonomous robot navigation with RGB-D camera. <em>IEEE Robotics and Automation Letters</em>.</li>
-  </ol>
-</section>
-  
+      </div>
+    </section>
+
+    <section id="references">
+      <div class="container">
+        <h2 class="section-title">References</h2>
+        <ol>
+          <li>Burgard, W., Fox, D., &amp; Thrun, S. (1997). Active mobile robot localization. <em>Robotics</em>, pp. 1346–1352.</li>
+          <li>Burgard, W., Bennewitz, M., &amp; Stachniss, C. (2017). Learning spatial representations for efficient robot navigation. <em>Robotics and Autonomous Systems</em>, 87, 162–176.</li>
+          <li>Jähne, B., &amp; Haussecker, H. (2018). Advancements in machine vision for robotic inspection and measurement. <em>Machine Vision and Applications</em>, 29(5), 789–809.</li>
+          <li>Demiris, Y., &amp; Schiele, B. (2019). Development of vision-based artificial agents for autonomous interaction. <em>IEEE Transactions on Robotics</em>, 35(3), 617–634.</li>
+          <li>LaValle, S. M. (2020). Modern approaches to robot motion planning. In <em>Springer Tracts in Advanced Robotics</em> (Vol. 123). Springer.</li>
+          <li>Xu, Z., Zhan, X., Xiu, Y., Suzuki, C., &amp; Shimada, K. (2023). Onboard dynamic-object detection and tracking for autonomous robot navigation with RGB-D camera. <em>IEEE Robotics and Automation Letters</em>.</li>
+        </ol>
+      </div>
+    </section>
+  </main>
 
   <footer>
-    <p>Done BY TEAM B1</p>
+    <div class="container">
+      &copy; 2025 Team B1
+    </div>
   </footer>
 </body>
 </html>
