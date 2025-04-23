@@ -79,8 +79,17 @@
       nav li { text-align: center; padding: 1rem 0; }
     }
 
-    /* Sections */
-    section { padding: 4rem 1rem; }
+    /* Sections & Animations */
+    section {
+      padding: 4rem 1rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
     .container { max-width: 1200px; margin: 0 auto; }
     .section-title {
       font-size: 2rem;
@@ -101,7 +110,20 @@
       overflow-x: auto;
       font-family: monospace;
       margin: 1rem 0;
-      white-space: pre-wrap;
+      white-space: pre;
+    }
+    /* Demo Video Sizing */
+    .video-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+    .video-grid video {
+      width: 100%;
+      max-width: 320px;
+      height: auto;
+      border-radius: 8px;
     }
 
     /* Footer */
@@ -121,6 +143,7 @@
       <label for="menu-toggle" class="menu-icon"><span></span></label>
       <nav>
         <ul>
+          <li><a href="#team">Team</a></li>
           <li><a href="#overview">Overview</a></li>
           <li><a href="#literature-review">Literature Review</a></li>
           <li><a href="#methodology">Methodology</a></li>
@@ -136,9 +159,22 @@
   </header>
 
   <main>
+    <section id="team">
+      <div class="container">
+        <h2 class="section-title">Team B1 Members</h2>
+        <ul>
+          <li>Yeturu Hemesh : CB.SC.U4AIE23166</li>
+          <li>Joel John : CB.SC.U4AIE23131</li>
+          <li>Abhishek Sankaramani : CB.SC.U4AIE23107</li>
+          <li>Adarsh P : CB.SC.U4AIE23109</li>
+        </ul>
+      </div>
+    </section>
+
     <section id="overview">
       <div class="container">
         <h2 class="section-title">Project Overview</h2>
+        <!-- Overview content -->
         <p>
           The project is about developing an Automated Vacuum Cleaner Robot that combines advanced robotics and mathematics for efficient autonomous cleaning. The robot uses Fourier and Discrete Cosine Transforms (DCT) for image processing, enabling it to distinguish between dust and obstacles. ADMM is applied for image denoising, while compressed sensing helps reduce the number of samples needed for image processing, saving computational resources.<br><br>
           Machine learning (logistic regression) is employed for obstacle classification, and Stochastic Gradient Descent is used to train the model. The vacuum's navigation relies on the A* algorithm for path planning and graph Laplacians for complete area coverage. Future enhancements could involve deep learning for object recognition, SLAM for environmental mapping, and reinforcement learning for adaptive cleaning strategies.
@@ -149,6 +185,7 @@
     <section id="literature-review">
       <div class="container">
         <h2 class="section-title">Literature Review</h2>
+        <!-- Literature Review content -->
         <table>
           <thead>
             <tr>
@@ -203,7 +240,6 @@
       <div class="container">
         <h2 class="section-title">Methodology</h2>
         <!-- Methodology content -->
-         <!-- Detailed Methodology -->
         <h3>1. Image Preprocessing &amp; Feature Extraction</h3>
         <p>Captured images are converted to the frequency domain to highlight key features:</p>
         <div class="code-block">
@@ -257,12 +293,14 @@ v=(R/2)(ω<sub>R</sub>+ω<sub>L</sub>)
 <br>
 w=(R/B)(ω<sub>R</sub>–ω<sub>L</sub>)
         </div>
+
       </div>
     </section>
 
     <section id="hardware">
       <div class="container">
         <h2 class="section-title">Hardware Architecture</h2>
+        <!-- Hardware content -->
         <ul>
           <li class="hardware-item">Arduino Uno</li>
           <li class="hardware-item">ESP32-CAM</li>
@@ -277,6 +315,7 @@ w=(R/B)(ω<sub>R</sub>–ω<sub>L</sub>)
     <section id="software">
       <div class="container">
         <h2 class="section-title">Software Architecture</h2>
+        <!-- Software content -->
         <p> Module Breakdown
           <br> Image Processing Module (PC Side)
           The ESP32-CAM streams live video to the PC, where Python captures the feed and processes it. The image is converted to grayscale and denoised using ADMM with DCT. The processed image is resized to 64x64 and flattened into a feature vector for classification. </br>
@@ -338,7 +377,7 @@ w=(R/B)(ω<sub>R</sub>–ω<sub>L</sub>)
         <p>The Arduino Uno handles low-level motor and sensor control, interfacing with the PC for navigation commands.</p>
         <ul>
           <li><strong>Motor &amp; Sensor Control:</strong> Drives DC motors via L298N driver and reads ultrasonic sensor data to detect obstacles.</li>
-          <li><strong>Serial Communication (9600 baud):</strong> Receives 'F' (forward) and 'A' (avoid) commands from the PC, sending real-time feedback.</li>
+          <li><strong>Serial Communication (9600 baud):</strong> Receives 'F' (forward) and 'A' (avoid) commands from the PC, sending real-time feedback.</li>
           <li><strong>Control Logic:</strong>
             <ul>
               <li><em>'F':</em> Both motors spin forward.</li>
@@ -363,7 +402,7 @@ w=(R/B)(ω<sub>R</sub>–ω<sub>L</sub>)
 |                                                   |Motor| |
 |                                                   +----+ |
 |                                                            |
-| Serial (USB, 9600 baud)                                  |
+| Serial (USB, 9600 baud)                                  |
 +------------------------------------------------------------+
         </div>
       </div>
@@ -372,54 +411,55 @@ w=(R/B)(ω<sub>R</sub>–ω<sub>L</sub>)
     <section id="demo">
       <div class="container">
         <h2 class="section-title">Demo</h2>
+        <!-- Demo content -->
         <p>This section showcases our robot’s simulation environments and hardware demonstrations.</p>
   
-    <h3>Simulation Videos</h3>
-    <div class="video-grid">
-      <video controls>
-        <source src="ads.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-      <video controls>
-        <source src="ads1.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-      <video controls>
-        <source src="ads2.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-    </div>
-  
-    <h3>Hardware Setup Image</h3>
-    <img class="demo-image" src="hardware.png" alt="Smart Vacuum Cleaner Hardware">
-  
-    <h3>Hardware Demo Videos</h3>
-    <div class="video-grid">
-      <video controls>
-        <source src="1.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-      <video controls>
-        <source src="2.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-    </div>
+        <h3>Simulation Videos</h3>
+        <div class="video-grid">
+          <video controls>
+            <source src="ads.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <video controls>
+            <source src="ads1.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <video controls>
+            <source src="ads2.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
       
+        <h3>Hardware Setup Image</h3>
+        <img class="demo-image" src="hardware.png" alt="Smart Vacuum Cleaner Hardware">
+      
+        <h3>Hardware Demo Videos</h3>
+        <div class="video-grid">
+          <video controls>
+            <source src="1.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <video controls>
+            <source src="2.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
       </div>
     </section>
 
     <section id="conclusion">
       <div class="container">
         <h2 class="section-title">Conclusion</h2>
+        <!-- Conclusion content -->
         <p>This project successfully demonstrates the design and implementation of a cost-effective Autonomous Vacuum Cleaner Robot that integrates vision-based perception, mathematical modeling, and efficient path planning. By utilizing a single camera combined with Fourier and DCT-based image analysis, the system accurately detects and distinguishes between floor textures, dust particles, and obstacles. Advanced optimization techniques like ADMM and compressed sensing significantly enhance noise reduction and image clarity for improved feature extraction.</p>
-    <p>Machine learning models, particularly logistic regression, enable real-time classification of obstacles, while A* and Dijkstra’s algorithms ensure optimal route computation for complete area coverage. The system operates reliably using differential drive kinematics controlled via PID, and the entire functionality is realized on low-cost embedded hardware platforms like Arduino and Raspberry Pi.</p>
-  
+        <p>Machine learning models, particularly logistic regression, enable real-time classification of obstacles, while A* and Dijkstra’s algorithms ensure optimal route computation for complete area coverage. The system operates reliably using differential drive kinematics controlled via PID, and the entire functionality is realized on low-cost embedded hardware platforms like Arduino and Raspberry Pi.</p>
+      
       </div>
     </section>
 
     <section id="references">
       <div class="container">
         <h2 class="section-title">References</h2>
+        <!-- References content -->
         <ol>
           <li>Burgard, W., Fox, D., &amp; Thrun, S. (1997). Active mobile robot localization. <em>Robotics</em>, pp. 1346–1352.</li>
           <li>Burgard, W., Bennewitz, M., &amp; Stachniss, C. (2017). Learning spatial representations for efficient robot navigation. <em>Robotics and Autonomous Systems</em>, 87, 162–176.</li>
@@ -437,5 +477,19 @@ w=(R/B)(ω<sub>R</sub>–ω<sub>L</sub>)
       &copy; 2025 Team B1
     </div>
   </footer>
+  <script>
+    // Scroll reveal animation
+    document.addEventListener('DOMContentLoaded', () => {
+      const sections = document.querySelectorAll('section');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.2 });
+      sections.forEach(sec => observer.observe(sec));
+    });
+  </script>
 </body>
 </html>
